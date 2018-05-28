@@ -1,0 +1,15 @@
+scrapy-redis插件用于将scrapy和redis结合实现简单分布式爬虫
+    定义调度器
+    去重规则:本质利用redis集合元素不重复(被调度器使用)request_seen
+
+pip install scrapy-redis
+引擎，获取起始request对象，添加pickle到调度器
+    先进先出列表，后进先出列表，有序集合
+调度器通知下载器可以开始下载，去调度器中获取(pickle)request对象，下载器
+爬虫parse方法，yield
+    item    交给pipeline处理
+    request 交给调度器处理，调用DUPEFILTER_CLASS 去检查是否已经访问过
+
+扩充
+    中间件
+    基于信号的扩展
